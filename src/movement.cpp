@@ -7,6 +7,9 @@ Movement::Movement()
 
 void Movement::Update(char StateIn)
 {
+
+	// SImdisdfsdfhsduifs
+
 	switch (StateIn)
 	{
 	case 'A':
