@@ -467,7 +467,7 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const// Draw 
 	char msg[255];
 	sprintf_s(msg,"%d", blueScore);
 	sf::Text drawingText(sf::String(msg),font,18);
-	drawingText.setColor(sf::Color::White);
+	drawingText.setFillColor(sf::Color::White);
 
 	drawingText.setPosition(250,577);
 	target.draw(drawingText);

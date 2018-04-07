@@ -14,13 +14,3 @@ AITank::AITank() // Construtor
 	
 	numberOfShells = 15;
 }
-
-
-
-
-
-
-
-
-
-

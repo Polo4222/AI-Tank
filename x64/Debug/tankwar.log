@@ -1,0 +1,23 @@
+﻿  aitank.cpp
+c:\users\tonny\documents\github\ai-tank\src\aitank.cpp(1): fatal error C1083: Cannot open include file: 'AITank.h': No such file or directory
+  boundingBox.cpp
+c:\users\tonny\documents\github\ai-tank\src\boundingbox.cpp(1): fatal error C1083: Cannot open include file: 'boundingBox.h': No such file or directory
+  DumbTank.cpp
+c:\users\tonny\documents\github\ai-tank\src\dumbtank.cpp(1): fatal error C1083: Cannot open include file: 'DumbTank.h': No such file or directory
+  game.cpp
+c:\users\tonny\documents\github\ai-tank\src\game.cpp(1): fatal error C1083: Cannot open include file: 'game.h': No such file or directory
+  main.cpp
+c:\users\tonny\documents\github\ai-tank\src\main.cpp(1): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  movement.cpp
+c:\users\tonny\documents\github\ai-tank\src\movement.cpp(1): fatal error C1083: Cannot open include file: 'movement.h': No such file or directory
+  obstacle.cpp
+c:\users\tonny\documents\github\ai-tank\src\obstacle.cpp(1): fatal error C1083: Cannot open include file: 'obstacle.h': No such file or directory
+  playerTank.cpp
+c:\users\tonny\documents\github\ai-tank\src\playertank.cpp(1): fatal error C1083: Cannot open include file: 'PlayerTank.h': No such file or directory
+  shell.cpp
+c:\users\tonny\documents\github\ai-tank\src\shell.cpp(1): fatal error C1083: Cannot open include file: 'shell.h': No such file or directory
+  tank.cpp
+c:\users\tonny\documents\github\ai-tank\src\tank.cpp(1): fatal error C1083: Cannot open include file: 'Tank.h': No such file or directory
+  tankNet.cpp
+c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(1): fatal error C1083: Cannot open include file: 'TankNet.h': No such file or directory
+  Generating Code...

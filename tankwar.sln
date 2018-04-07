@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tankwar", "tankwar.vcxproj", "{02A8C245-168E-46AA-AC65-0D6A2F615675}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tankwar", "tankwar.vcxproj", "{00D9E825-16FA-483E-A387-BF5C58208ED3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +11,15 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{02A8C245-168E-46AA-AC65-0D6A2F615675}.Debug|Win32.ActiveCfg = Debug|Win32
-		{02A8C245-168E-46AA-AC65-0D6A2F615675}.Debug|Win32.Build.0 = Debug|Win32
-		{02A8C245-168E-46AA-AC65-0D6A2F615675}.Release|Win32.ActiveCfg = Release|Win32
-		{02A8C245-168E-46AA-AC65-0D6A2F615675}.Release|Win32.Build.0 = Release|Win32
+		{00D9E825-16FA-483E-A387-BF5C58208ED3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{00D9E825-16FA-483E-A387-BF5C58208ED3}.Debug|Win32.Build.0 = Debug|Win32
+		{00D9E825-16FA-483E-A387-BF5C58208ED3}.Release|Win32.ActiveCfg = Release|Win32
+		{00D9E825-16FA-483E-A387-BF5C58208ED3}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B5B13AA-7DEA-4E7C-98AC-F04BC1068C9C}
 	EndGlobalSection
 EndGlobal

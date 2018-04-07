@@ -18,6 +18,34 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\aitank.cpp" />
+    <ClCompile Include="src\astar.cpp" />
+    <ClCompile Include="src\boundingBox.cpp" />
+    <ClCompile Include="src\DumbTank.cpp" />
+    <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\movement.cpp" />
+    <ClCompile Include="src\obstacle.cpp" />
+    <ClCompile Include="src\playerTank.cpp" />
+    <ClCompile Include="src\shell.cpp" />
+    <ClCompile Include="src\tank.cpp" />
+    <ClCompile Include="src\tankNet.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\aitank.h" />
+    <ClInclude Include="include\astar.h" />
+    <ClInclude Include="include\boundingBox.h" />
+    <ClInclude Include="include\dumbTank.h" />
+    <ClInclude Include="include\game.h" />
+    <ClInclude Include="include\movement.h" />
+    <ClInclude Include="include\obstacle.h" />
+    <ClInclude Include="include\playerTank.h" />
+    <ClInclude Include="include\position.h" />
+    <ClInclude Include="include\shell.h" />
+    <ClInclude Include="include\tank.h" />
+    <ClInclude Include="include\tankNet.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{00D9E825-16FA-483E-A387-BF5C58208ED3}</ProjectGuid>
     <RootNamespace>Project1</RootNamespace>
@@ -68,13 +96,23 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\tonny\Documents\GitHub\AI-Tank\SFML-2.4.1;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ExecutablePath>$(SolutionDir)SFML-2.4.1/bin;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(SolutionDir)include;$(SolutionDir)SFML-2.4.1/include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)SFML-2.4.1/lib;$(libraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>sfml-system-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-window-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
