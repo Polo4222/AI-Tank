@@ -445,6 +445,14 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const// Draw 
 	// Draw Player
 	target.draw(player);
 	
+	if (debugMode)
+	{
+		for (int i = 0; i < m_debugGrid.size(); i++)
+		{
+			m_debugGrid[i]->DrawLine(target, states);
+		}
+	}
+
 	// Draw ammo
 	sf::RectangleShape ammo(sf::Vector2f(5,10));
 	ammo.setFillColor(sf::Color(0,0,255));
@@ -513,6 +521,10 @@ void Game::keyPressed(sf::Keyboard::Key key)
 		   player.toggleDebugMode();
 		   npc.toggleDebugMode();
 		   for (list<Shell>::iterator it = shells.begin(); it != shells.end(); ++it){it->toggleDebugMode();}
+		  
+		   grid = new Grid(4, 400, 20, 0);
+		   m_debugGrid.push_back(grid);
+
 		   break;
 	   case  sf::Keyboard::W : 
 		   player.goForward();

@@ -1,10 +1,13 @@
 ﻿  game.cpp
-c:\users\tonny\documents\github\ai-tank\src\game.cpp(483): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  c:\users\tonny\documents\github\ai-tank\src\game.cpp(483): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-c:\users\tonny\documents\github\ai-tank\src\game.cpp(490): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  c:\users\tonny\documents\github\ai-tank\src\game.cpp(490): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-c:\users\tonny\documents\github\ai-tank\src\game.cpp(495): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  c:\users\tonny\documents\github\ai-tank\src\game.cpp(495): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-c:\users\tonny\documents\github\ai-tank\src\game.cpp(500): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  c:\users\tonny\documents\github\ai-tank\src\game.cpp(500): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+c:\users\tonny\documents\github\ai-tank\src\game.cpp(450): warning C4018: '<': signed/unsigned mismatch
+c:\users\tonny\documents\github\ai-tank\src\game.cpp(491): warning C4474: 'sprintf_s' : too many arguments passed for format string
+  c:\users\tonny\documents\github\ai-tank\src\game.cpp(491): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+c:\users\tonny\documents\github\ai-tank\src\game.cpp(498): warning C4474: 'sprintf_s' : too many arguments passed for format string
+  c:\users\tonny\documents\github\ai-tank\src\game.cpp(498): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+c:\users\tonny\documents\github\ai-tank\src\game.cpp(503): warning C4474: 'sprintf_s' : too many arguments passed for format string
+  c:\users\tonny\documents\github\ai-tank\src\game.cpp(503): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+c:\users\tonny\documents\github\ai-tank\src\game.cpp(508): warning C4474: 'sprintf_s' : too many arguments passed for format string
+  c:\users\tonny\documents\github\ai-tank\src\game.cpp(508): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+  main.cpp
+  Generating Code...
   tankwar.vcxproj -> C:\Users\tonny\Documents\GitHub\AI-Tank\Debug\tankwar.exe

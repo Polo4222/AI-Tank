@@ -9,6 +9,7 @@
 #include "playerTank.h"
 #include "obstacle.h"
 #include "shell.h"
+#include "debuggrid.h"
 
 using namespace std;
 
@@ -28,6 +29,9 @@ class Game : public sf::Drawable
 		void fireShell(Position fp, bool npc); // Fire a shell
 		int redScore; // Score of red tank
 		int blueScore; // Score of blue tank
+		std::vector<Grid*> m_debugGrid;
+		Grid* grid;
+
     public:
 		Game(); // Constructor
 		~Game(); // Destructor
