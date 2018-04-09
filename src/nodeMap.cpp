@@ -27,3 +27,8 @@ void NodeMap::CreateMap()
 	std::cout << " " << m_nodeMap[38][27].number;
 	
 }
+
+std::vector<std::vector<Node>>& NodeMap::getNodeMap()
+{
+	return m_nodeMap;
+}

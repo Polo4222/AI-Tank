@@ -20,4 +20,5 @@ private:
 public:
 	NodeMap(); // Constructor
 	void CreateMap(); // Used to create the map of nodes
+	std::vector<std::vector<Node>>& getNodeMap();
 };

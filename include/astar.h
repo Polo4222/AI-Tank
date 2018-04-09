@@ -1,14 +1,17 @@
 #pragma once
 #include <list>
+#include "nodeMap.h"
 
 class AStar {
 
 private:
-	std::list<node> CurrentNode;
-	std::list<node> Path;
-	std::list<node> CheckedNodes;
+	NodeMap* m_nodeMap;
+	std::vector<std::vector<Node>> NodeVector;
+	std::list<Node> CurrentNode;
+	std::list<Node> Path;
+	std::list<Node> CheckedNodes;
 
 public:
-
+	AStar();
 
 };

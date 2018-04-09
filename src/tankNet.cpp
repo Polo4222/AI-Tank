@@ -5,11 +5,9 @@
 TankNet::TankNet() // Construtor
 {
 	forwards = true;
-<<<<<<< HEAD
 	BattlePlans::BattlePlans();
-=======
 	m_nodeMap.CreateMap();
->>>>>>> e66fc320b82279a2fb3d3349e3b7a36ac3e535d6
+
 }
 
 TankNet::~TankNet() // Destructor

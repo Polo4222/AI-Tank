@@ -2,11 +2,9 @@
 
 #include "aitank.h"
 #include "movement.h" // Movement class
-<<<<<<< HEAD
 #include "battlePlans.h" //Plan class
-=======
 #include "nodeMap.h" // nodeMap class
->>>>>>> e66fc320b82279a2fb3d3349e3b7a36ac3e535d6
+
 
 
 class TankNet : public AITank
