@@ -2,13 +2,16 @@
 
 #include "aitank.h"
 #include "movement.h" // Movement class
+#include "nodeMap.h" // nodeMap class
 
 
 class TankNet : public AITank
 {
 private:
 	bool forwards;
+
 	Movement m_movement;
+	NodeMap m_nodeMap;
 
 	Position enemy_base_position; // Current known position of enemy base
 	Position own_base_position;	// Current known position of own base

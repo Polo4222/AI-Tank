@@ -445,11 +445,14 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const// Draw 
 	// Draw Player
 	target.draw(player);
 	
+	// Draw A* grid if in debug mode
 	if (debugMode)
 	{
 		for (int i = 0; i < m_debugGrid.size(); i++)
 		{
+			
 			m_debugGrid[i]->DrawLine(target, states);
+			
 		}
 	}
 

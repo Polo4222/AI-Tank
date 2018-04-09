@@ -5,6 +5,7 @@
 TankNet::TankNet() // Construtor
 {
 	forwards = true;
+	m_nodeMap.CreateMap();
 }
 
 TankNet::~TankNet() // Destructor
