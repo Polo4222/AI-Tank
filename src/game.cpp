@@ -522,8 +522,23 @@ void Game::keyPressed(sf::Keyboard::Key key)
 		   npc.toggleDebugMode();
 		   for (list<Shell>::iterator it = shells.begin(); it != shells.end(); ++it){it->toggleDebugMode();}
 		  
-		   grid = new Grid(4, 400, 20, 0);
-		   m_debugGrid.push_back(grid);
+		   //Debug grid
+		  // grid = new Grid(1, 560, 10, 10);
+		   //m_debugGrid.push_back(grid);
+		   
+		   for (int i = 0; i < 40; i++) {
+			   grid = new Grid(1, 560, j, 10);
+			   m_debugGrid.push_back(grid);
+			   j = j + 20;
+		   }
+		   
+		   j = 10;
+
+		   for (int i = 0; i < 29; i++) {
+			   grid = new Grid(780, 1, 10, j);
+			   m_debugGrid.push_back(grid);
+			   j = j + 20;
+		   }
 
 		   break;
 	   case  sf::Keyboard::W : 

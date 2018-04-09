@@ -5,13 +5,13 @@
 TankNet::TankNet() // Construtor
 {
 	forwards = true;
+	BattlePlans::BattlePlans();
 }
 
 TankNet::~TankNet() // Destructor
 {
 
-} 
-
+}
 
 void TankNet::reset()
 {

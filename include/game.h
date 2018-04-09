@@ -31,6 +31,7 @@ class Game : public sf::Drawable
 		int blueScore; // Score of blue tank
 		std::vector<Grid*> m_debugGrid;
 		Grid* grid;
+		int j = 10;
 
     public:
 		Game(); // Constructor

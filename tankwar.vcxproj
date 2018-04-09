@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\aitank.cpp" />
     <ClCompile Include="src\astar.cpp" />
+    <ClCompile Include="src\battlePlans.cpp" />
     <ClCompile Include="src\boundingBox.cpp" />
     <ClCompile Include="src\debuggrid.cpp" />
     <ClCompile Include="src\DumbTank.cpp" />
@@ -36,6 +37,7 @@
   <ItemGroup>
     <ClInclude Include="include\aitank.h" />
     <ClInclude Include="include\astar.h" />
+    <ClInclude Include="include\battlePlans.h" />
     <ClInclude Include="include\boundingBox.h" />
     <ClInclude Include="include\debuggrid.h" />
     <ClInclude Include="include\dumbTank.h" />
