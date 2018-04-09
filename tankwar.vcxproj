@@ -28,6 +28,7 @@
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\movement.cpp" />
+    <ClCompile Include="src\nodeMap.cpp" />
     <ClCompile Include="src\obstacle.cpp" />
     <ClCompile Include="src\playerTank.cpp" />
     <ClCompile Include="src\shell.cpp" />
@@ -43,6 +44,8 @@
     <ClInclude Include="include\dumbTank.h" />
     <ClInclude Include="include\game.h" />
     <ClInclude Include="include\movement.h" />
+    <ClInclude Include="include\node.h" />
+    <ClInclude Include="include\nodeMap.h" />
     <ClInclude Include="include\obstacle.h" />
     <ClInclude Include="include\playerTank.h" />
     <ClInclude Include="include\position.h" />

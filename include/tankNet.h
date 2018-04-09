@@ -2,14 +2,20 @@
 
 #include "aitank.h"
 #include "movement.h" // Movement class
+<<<<<<< HEAD
 #include "battlePlans.h" //Plan class
+=======
+#include "nodeMap.h" // nodeMap class
+>>>>>>> e66fc320b82279a2fb3d3349e3b7a36ac3e535d6
 
 
 class TankNet : public AITank
 {
 private:
 	bool forwards;
+
 	Movement m_movement;
+	NodeMap m_nodeMap;
 
 	enum BattlePlan { Attack, Semi_Attack, Semi_Defence, Defense };
 	enum GUN { Idle, Aiming, Aiming_Left, Aiming_Right, Firing };
