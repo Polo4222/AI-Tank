@@ -16,7 +16,6 @@ private:
 	std::vector<Node> m_nodeColumn; // row for nodemap
 	std::vector<std::vector<Node>> m_nodeMap; // Used to store all the nodes
 	
-	
 public:
 	NodeMap(); // Constructor
 	void CreateMap(); // Used to create the map of nodes
