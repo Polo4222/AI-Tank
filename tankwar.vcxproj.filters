@@ -7,9 +7,6 @@
     <ClCompile Include="src\astar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\battlePlans.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\boundingBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -52,9 +49,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\astar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\battlePlans.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\boundingBox.h">

@@ -98,13 +98,18 @@ void AStar::Run(Node startNodeIn, Node endNodeIn)
 		ParentNode.visited = true;
 		std::cout << "Lowest FScore: " << LowestFScore << " At node: "<<LowestNode.xNumber<< " | " << LowestNode.yNumber << "\n";
 		Path.push_back(LowestNode);
-
+		
 	}
 	std::cout << "End node: " << endNodeIn.xNumber << " | " << endNodeIn.yNumber << " has been reached \n";
-	while(!Path.empty())
-	{
-		std::cout << "| "<< Path.front().xNumber << " " << Path.front().yNumber << " ";
-		Path.pop_front();
-	}
+	//while(!Path.empty())
+	//{
+	//	std::cout << "| "<< Path.front().xNumber << " " << Path.front().yNumber << " ";
+		//Path.pop_front();
+	//}
 
+}
+
+std::list<Node> AStar::GetPath()
+{
+	return Path;
 }

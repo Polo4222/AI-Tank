@@ -13,7 +13,7 @@ private:
 public:
 	AStar(); // Constuctor 
 	void Run(Node startNodeIn, Node endNodeIn);
-
+	std::list<Node> GetPath();
 
 
 };

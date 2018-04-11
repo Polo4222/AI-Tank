@@ -12,7 +12,7 @@ void Movement::Update(char StateIn)
 	{
 	case 'A':
 		// Attack
-		//std::cout << "Attack\n";
+		std::cout << "Attack\n";
 
 		/*
 		Hunt for bases, engaging player only when base isn't possible
