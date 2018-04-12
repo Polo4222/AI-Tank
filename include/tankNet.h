@@ -40,8 +40,13 @@ private:
 	Position own_base_position;	// Current known position of own base
 	Position enemy_tank_position; // Current known position of own tank
 
+<<<<<<< HEAD
 	void PathValueCalculations(std::list<Node> TankPaths, int ValueHolder);
 	void AimingCalculations();
+=======
+
+	void PathValueCalculations(std::vector<Node> TankPaths, int ValueHolder);
+>>>>>>> b58f7e1a92c111e9e38a825613befc9eb823639e
 
 public:
     TankNet();

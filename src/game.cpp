@@ -70,13 +70,17 @@ Game::Game() // Constructor
 
 	redScore = 0;
 	blueScore = 0;
-	}
 
-	Game::~Game(){}  // Destructor
+	// MAP DRAWING
+	std::vector<Node> m_list = npc.getList();
+	gridNode.GetPath(m_list);
+}
+
+Game::~Game(){}  // Destructor
 
 	// Set a random Position which does not collide with anything
-	void Game::resetNpc()
-	{
+void Game::resetNpc()
+{
 	bool collision = true;
 	while(collision)
 	{
@@ -450,10 +454,10 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const// Draw 
 	{
 		for (int i = 0; i < m_debugGrid.size(); i++)
 		{
-			
 			m_debugGrid[i]->DrawLine(target, states);
-			
 		}
+
+		target.draw(gridNode);
 	}
 
 	// Draw ammo

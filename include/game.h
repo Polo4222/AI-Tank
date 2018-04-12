@@ -10,6 +10,7 @@
 #include "obstacle.h"
 #include "shell.h"
 #include "debuggrid.h"
+#include "GridNode.h"
 
 using namespace std;
 
@@ -34,6 +35,8 @@ class Game : public sf::Drawable
 		std::vector<Grid*> m_debugGrid;
 		Grid* grid;
 		int j = 10;
+
+		GridNode gridNode;
 
     public:
 		Game(); // Constructor

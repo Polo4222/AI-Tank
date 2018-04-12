@@ -101,15 +101,15 @@ void AStar::Run(Node startNodeIn, Node endNodeIn)
 		
 	}
 	std::cout << "End node: " << endNodeIn.xNumber << " | " << endNodeIn.yNumber << " has been reached \n";
-	//while(!Path.empty())
-	//{
-	//	std::cout << "| "<< Path.front().xNumber << " " << Path.front().yNumber << " ";
-		//Path.pop_front();
-	//}
+	for (int i = 0; i < Path.size(); i++)
+	{
+		std::cout << "| " << Path.front().xNumber << " " << Path.front().yNumber << " ";
+	}
 
 }
 
-std::list<Node> AStar::GetPath()
+std::vector<Node> AStar::GetPath()
 {
 	return Path;
 }
+
