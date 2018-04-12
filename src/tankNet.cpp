@@ -10,6 +10,45 @@ void TankNet::PathValueCalculations(std::list<Node> TankPaths, int ValueHolder)
 	}
 }
 
+void TankNet::AimingCalculations()
+{
+	if (enemySpotted == true || enemyBaseSpotted == true)
+	{
+		float deltaR = turretTh - turretAngle;
+		if (deltaR > 10)
+		{
+			GUN = 'R';
+		}
+		else if (deltaR < -10)
+		{
+			GUN = 'L';
+		}
+		else
+		{
+			GUN = 'A';
+		}
+
+		if (deltaR > 1 && deltaR < 180) {
+			turretGoLeft();
+		}
+		else if (deltaR < -1 && deltaR > -180) {
+			turretGoRight();
+		}
+		else if (deltaR < -180) {
+			turretGoLeft();
+		}
+		else if (deltaR > 180) {
+			turretGoRight();
+		}
+		else {
+			lineOfSight = true;
+			stopTurret();
+			clearMovement();
+		}
+
+	}
+}
+
 TankNet::TankNet() // Construtor
 {
 	m_nodeMap.CreateMap();
@@ -129,6 +168,13 @@ void TankNet::markTarget(Position p)
 void TankNet::markEnemy(Position p)
 {
 	enemy_tank_position = p;
+
+	float deltaX = getX() - p.getX();
+	float deltaY = getY() - p.getY();
+
+	angleInDegrees = atan2(deltaY, deltaX) * 180 / PI;
+	turretAngle = angleInDegrees + 180; 
+
 	//std::cout << "Enemy spotted at (" <<p.getX() << ", " << p.getY() << ")\n";
 
 }
@@ -137,6 +183,13 @@ void TankNet::markEnemy(Position p)
 void TankNet::markBase(Position p)
 {
 	enemy_base_position = p;
+
+	float deltaX = getX() - p.getX();
+	float deltaY = getY() - p.getY();
+
+	angleInDegrees = atan2(deltaY, deltaX) * 180 / PI;
+	turretAngle = angleInDegrees + 180;
+
 	//std::cout << "Base spotted at (" <<p.getX() << ", " << p.getY() << ")\n"; 
 }
 
@@ -145,9 +198,64 @@ void TankNet::markShell(Position p)
 	//std::cout << "Shell spotted at (" <<p.getX() << ", " << p.getY() << ")\n"; 
 }
 
+void TankNet::turret()
+{
+
+	if ((enemySpotted == true && lineOfSight == true || enemyBaseSpotted == true && lineOfSight == true) && hasAmmo() == true)
+	{
+		GUN = 'F';
+	}
+	else
+	{
+		GUN = 'I';
+	}
+
+
+}
+
+void TankNet::Aiming()
+{
+	
+	if ((BattlePlan == 'A' || BattlePlan == 'B') && numberOfShells > buildingsRemain)
+	{
+		if (enemyBaseSpotted == true)
+		{
+			AimingCalculations();
+		}
+		else if (enemySpotted == true)
+		{
+			AimingCalculations();
+		}
+	}
+	else if (BattlePlan == 'C' && numberOfShells > buildingsRemain)
+	{
+		if (enemySpotted == true)
+		{
+			AimingCalculations();
+		}
+		else if (enemyBaseSpotted == true)
+		{
+			AimingCalculations();
+		}
+	}
+	else if(BattlePlan == 'D')
+	{
+		if (enemySpotted == true)
+		{
+			AimingCalculations();
+		}
+		else if (enemyBaseSpotted == true)
+		{
+			AimingCalculations();
+		}
+		
+	}
+
+}
+
 bool TankNet::isFiring()
 {
-	return !forwards; // Fire when going backwards
+	return GUN == 'F';
 } 
 
 void TankNet::score(int thisScore,int enemyScore)

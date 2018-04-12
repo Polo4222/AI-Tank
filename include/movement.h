@@ -2,11 +2,12 @@
 
 #include <iostream>
 
+
 class Movement
 {
 private:
 
 public:
 	Movement(); // Constructor 
-	void Update(char StateIn); // Update based on the current state
+	void Update(char a); // Update based on the current state
 };
