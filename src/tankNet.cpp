@@ -2,7 +2,7 @@
 
 
 
-void TankNet::PathValueCalculations(std::list<Node> TankPaths, int ValueHolder)
+void TankNet::PathValueCalculations(std::vector<Node> TankPaths, int ValueHolder)
 {
 	for (int i = 0; i < TankPaths.size(); i++)
 	{
@@ -20,7 +20,7 @@ TankNet::TankNet() // Construtor
 
 	m_aStar.Run(NodeVector[5][5], NodeVector[20][0]); // Run the AStar algorithm with these two nodes
 
-	
+	m_list = m_aStar.GetPath();
 
 }
 
@@ -153,4 +153,9 @@ bool TankNet::isFiring()
 void TankNet::score(int thisScore,int enemyScore)
 {
 	//std::cout << "MyScore: " << thisScore << "\tEnemy score: " << enemyScore << std::endl;
+}
+
+std::vector<Node> TankNet::getList()
+{
+	return m_list;
 }

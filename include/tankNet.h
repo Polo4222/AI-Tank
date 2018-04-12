@@ -9,8 +9,8 @@ class TankNet : public AITank
 private:
 	bool forwards;
 
-	std::list<Node> m_TankPath;
-	std::list<Node> m_PlayerPath;
+	std::vector<Node> m_TankPath;
+	std::vector<Node> m_PlayerPath;
 
 	NodeMap m_nodeMap; // Get a version of the NodeMap class
 	std::vector<std::vector<Node>> NodeVector; // Will be used to store the 2d vector of all nodes
@@ -31,7 +31,9 @@ private:
 	Position own_base_position;	// Current known position of own base
 	Position enemy_tank_position; // Current known position of own tank
 
-	void PathValueCalculations(std::list<Node> TankPaths, int ValueHolder);
+	std::vector<Node> m_list;
+
+	void PathValueCalculations(std::vector<Node> TankPaths, int ValueHolder);
 
 public:
     TankNet();
@@ -46,4 +48,5 @@ public:
 	void markShell(Position p);
 	bool isFiring(); 
 	void score(int thisScore,int enemyScore);
+	std::vector<Node> getList();
 };

@@ -1,15 +1,8 @@
-﻿  game.cpp
-c:\users\tonny\documents\github\ai-tank\src\game.cpp(451): warning C4018: '<': signed/unsigned mismatch
-c:\users\tonny\documents\github\ai-tank\src\game.cpp(494): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  c:\users\tonny\documents\github\ai-tank\src\game.cpp(494): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-c:\users\tonny\documents\github\ai-tank\src\game.cpp(501): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  c:\users\tonny\documents\github\ai-tank\src\game.cpp(501): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-c:\users\tonny\documents\github\ai-tank\src\game.cpp(506): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  c:\users\tonny\documents\github\ai-tank\src\game.cpp(506): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-c:\users\tonny\documents\github\ai-tank\src\game.cpp(511): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  c:\users\tonny\documents\github\ai-tank\src\game.cpp(511): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-  main.cpp
-  tankNet.cpp
-c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(7): warning C4018: '<': signed/unsigned mismatch
+﻿  tankNet.cpp
+h:\year two\imat2800-mechanics and artificial intelligence for simulation\group project\ai-tank\src\tanknet.cpp(7): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
-  tankwar.vcxproj -> C:\Users\tonny\Documents\GitHub\AI-Tank\Debug\tankwar.exe
+  Skipping... (no relevant changes detected)
+  main.cpp
+  game.cpp
+  tankwar.vcxproj -> H:\Year Two\IMAT2800-Mechanics and Artificial Intelligence for Simulation\Group Project\AI-Tank\Debug\tankwar.exe
+  tankwar.vcxproj -> H:\Year Two\IMAT2800-Mechanics and Artificial Intelligence for Simulation\Group Project\AI-Tank\Debug\tankwar.pdb (Partial PDB)
