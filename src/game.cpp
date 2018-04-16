@@ -72,7 +72,7 @@ Game::Game() // Constructor
 	blueScore = 0;
 
 	// MAP DRAWING
-	std::vector<Node> m_list = npc.getList();
+	std::vector<Node> m_list = npc.getPath();
 	gridNode.GetPath(m_list);
 }
 

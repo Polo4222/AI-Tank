@@ -59,7 +59,7 @@ TankNet::TankNet() // Construtor
 
 	m_aStar.Run(NodeVector[5][5], NodeVector[20][0]); // Run the AStar algorithm with these two nodes
 
-	m_list = m_aStar.GetPath();
+	m_path = m_aStar.GetPath();
 
 }
 
@@ -263,7 +263,7 @@ void TankNet::score(int thisScore,int enemyScore)
 	//std::cout << "MyScore: " << thisScore << "\tEnemy score: " << enemyScore << std::endl;
 }
 
-std::vector<Node> TankNet::getList()
+std::vector<Node> TankNet::getPath()
 {
-	return m_list;
+	return m_path;
 }

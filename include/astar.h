@@ -9,9 +9,11 @@ private:
 	std::list<Node> CurrentNode; 
 	std::list<Node> CheckedNodes;
 
+	std::vector<Node> Path;
+
 public:
 	AStar(); // Constuctor 
 	void Run(Node startNodeIn, Node endNodeIn);
-
+	std::vector<Node> GetPath();
 
 };
