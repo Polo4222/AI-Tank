@@ -1,23 +1,29 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <iostream>
+#include <vector>
 #include "node.h"
+
+// NodeMap class used to assign data to all the nodes
 
 class NodeMap
 {
 private:
-	int ScreenSizeX = 780;
-	int ScreenSizeY = 560;
+	const int ScreenSizeX = 780; // Size of the screen - should be passed to node map in future
+	const int ScreenSizeY = 560;
+	const int Spacing = 20; // Spacing between the nodes
 
-	int Spacing = 20; // Space between each node - will eventually be passed based on screen size
-	const sf::Vector2i mapSize = sf::Vector2i(ScreenSizeX/Spacing,ScreenSizeY/Spacing); // Amount of nodes that will be present in the map
-	
+	// Calculating how many nodes required based on the values above
+	int mapSizeX = ScreenSizeX/Spacing;
+	int mapSizeY = ScreenSizeY/Spacing;
+
 	std::vector<Node> m_nodeColumn; // row for nodemap
 	std::vector<std::vector<Node>> m_nodeMap; // Used to store all the nodes
-	
+
+	Node fakeNode; // Dummy node for out of bounds adjacent nodes
 public:
-	NodeMap(); // Constructor
+	NodeMap(); // Default constructor
 	void CreateMap(); // Used to create the map of nodes
-	std::vector<std::vector<Node>>& getNodeMap();
+	std::vector<std::vector<Node>>& getNodeMap(); // Return the map of nodes
+
 };
+

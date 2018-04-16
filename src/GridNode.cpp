@@ -13,7 +13,7 @@ void GridNode::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	m_gridNode.setFillColor(sf::Color::Red);
 	for (int i = 0; i < m_pathList.size(); i++)
 	{
-		m_gridNode.setPosition(m_pathList[i].position.x, m_pathList[i].position.y);
+		m_gridNode.setPosition(m_pathList[i].CoordX, m_pathList[i].CoordY);
 		target.draw(m_gridNode);
 	}
 }

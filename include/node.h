@@ -1,18 +1,27 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 
+#include <iostream>
+
+// Node struct - container for all node information
 
 struct Node
 {
-	int number = 0; // Number of the node - horizontal numbering
-	sf::Vector2i position; // Position of the node
-	int xNumber = 0; // x Number of node
-	int yNumber = 0; // y Number of node
-	bool traversible = true; // If the node can be traversed - defaults to true
-	bool visited = false; // If the node has been visited yet - defaults to false
-	float gscore = 0; // Distance from start node to current node
-	float hscore = 0; // Distance from current node to goal node
-	Node* adjacent[8]; // Adjacent nodes
+	// All values initially set to -1 so it is easy to see if data has been allocated to the node
+	int Number = -1; // Node number
+	int CoordX = -1; // Actual X and Y positions
+	int CoordY = -1;
+	int XPosition = -1;	// X + Y Coords
+	int YPosition = -1;
+	float GCost = -1.f;// G Cost
+	float HCost = -1.f;// H Cost
+	float FCost = -1.f;// F Cost
+	int ParentXPosition = -1;// Parent node number
+	int ParentYPosition = -1;// Parent node number
+	bool Obstruction = false; // Obstruction node - true if tank will not be able to pass through
+	bool inOpen = false; // Is node in Open List?
+	bool inClosed = false;	// Is node in Closed List?
 
-	Node* parent; // Parent node
+	Node * adjacent[8]; // References to all nodes adjacent to this node
+	//void Show() { std::cout << XPosition << " " << YPosition; }; // Show which node this is	
 };
+

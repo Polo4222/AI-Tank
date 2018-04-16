@@ -1,11 +1,5 @@
-﻿  game.cpp
-e:\documents\uni - year 2\ai tank\ai-tank\src\game.cpp(455): warning C4018: '<': signed/unsigned mismatch
-e:\documents\uni - year 2\ai tank\ai-tank\src\game.cpp(498): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  e:\documents\uni - year 2\ai tank\ai-tank\src\game.cpp(498): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-e:\documents\uni - year 2\ai tank\ai-tank\src\game.cpp(505): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  e:\documents\uni - year 2\ai tank\ai-tank\src\game.cpp(505): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-e:\documents\uni - year 2\ai tank\ai-tank\src\game.cpp(510): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  e:\documents\uni - year 2\ai tank\ai-tank\src\game.cpp(510): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-e:\documents\uni - year 2\ai tank\ai-tank\src\game.cpp(515): warning C4474: 'sprintf_s' : too many arguments passed for format string
-  e:\documents\uni - year 2\ai tank\ai-tank\src\game.cpp(515): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+﻿  tankNet.cpp
+e:\documents\uni - year 2\ai tank\ai-tank\src\tanknet.cpp(7): warning C4018: '<': signed/unsigned mismatch
+e:\documents\uni - year 2\ai tank\ai-tank\src\tanknet.cpp(175): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+e:\documents\uni - year 2\ai tank\ai-tank\src\tanknet.cpp(190): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   tankwar.vcxproj -> E:\Documents\Uni - Year 2\AI Tank\AI-Tank\Debug\tankwar.exe

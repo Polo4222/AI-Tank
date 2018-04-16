@@ -57,9 +57,9 @@ TankNet::TankNet() // Construtor
 	
 	forwards = true;
 
-	m_aStar.Run(NodeVector[5][5], NodeVector[20][0]); // Run the AStar algorithm with these two nodes
+	m_aStar.Run(NodeVector[1][1], NodeVector[5][5], m_nodeMap.getNodeMap()); // Run the AStar algorithm with these two nodes
 
-	m_path = m_aStar.GetPath();
+	m_path = m_aStar.getPath();
 
 }
 
@@ -77,9 +77,9 @@ void TankNet::SetBattlePlans()
 
 	m_nodeMap.CreateMap();
 	NodeVector = m_nodeMap.getNodeMap();
-	m_aStar.Run(NodeVector[25][15], NodeVector[m_Endx][m_Endy]);
+	m_aStar.Run(NodeVector[25][15], NodeVector[m_Endx][m_Endy],m_nodeMap.getNodeMap());
 
-	m_TankPath = m_aStar.GetPath();
+	m_TankPath = m_aStar.getPath();
 
 
 	m_Startx = std::rand() % 15 + 1;
@@ -90,9 +90,9 @@ void TankNet::SetBattlePlans()
 
 	m_nodeMap.CreateMap();
 	NodeVector = m_nodeMap.getNodeMap();
-	m_aStar.Run(NodeVector[m_Startx][m_Starty], NodeVector[m_Endx][m_Endy]);
+	m_aStar.Run(NodeVector[m_Startx][m_Starty], NodeVector[m_Endx][m_Endy],m_nodeMap.getNodeMap());
 
-	m_PlayerPath = m_aStar.GetPath();
+	m_PlayerPath = m_aStar.getPath();
 
 	PathValueCalculations(m_TankPath, m_TankPathValue);
 	PathValueCalculations(m_PlayerPath, m_PlayerPathValue);
