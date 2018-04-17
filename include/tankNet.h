@@ -1,7 +1,6 @@
 #pragma once
 #include "aitank.h"
 #include "movement.h" // Movement class
-#include "nodeMap.h" // nodeMap class
 #include "astar.h" // AStar class
 
 class TankNet : public AITank
@@ -12,8 +11,6 @@ private:
 	std::vector<Node> m_TankPath;
 	std::vector<Node> m_PlayerPath;
 
-	NodeMap m_nodeMap; // Get a version of the NodeMap class
-	std::vector<std::vector<Node>> NodeVector; // Will be used to store the 2d vector of all nodes
 
 	Movement m_movement;
 	
@@ -40,6 +37,7 @@ private:
 	Position own_base_position;	// Current known position of own base
 	Position enemy_tank_position; // Current known position of own tank
 
+	bool aStarRan = false;
 	std::vector<Node> m_path;
 
 

@@ -51,16 +51,8 @@ void TankNet::AimingCalculations()
 
 TankNet::TankNet() // Construtor
 {
-	m_nodeMap.CreateMap();
-	NodeVector = m_nodeMap.getNodeMap(); // Get the map of nodes and assign it to the NodeVector
 	
 	
-	forwards = true;
-
-	m_aStar.Run(NodeVector[1][1], NodeVector[5][5], m_nodeMap.getNodeMap()); // Run the AStar algorithm with these two nodes
-
-	m_path = m_aStar.getPath();
-
 }
 
 TankNet::~TankNet() // Destructor
@@ -75,9 +67,7 @@ void TankNet::SetBattlePlans()
 	m_Endx = std::rand() % 15 + 1;
 	m_Endx = std::rand() % 20 + 1;
 
-	m_nodeMap.CreateMap();
-	NodeVector = m_nodeMap.getNodeMap();
-	m_aStar.Run(NodeVector[25][15], NodeVector[m_Endx][m_Endy],m_nodeMap.getNodeMap());
+	m_aStar.Run(25,15,m_Endx,m_Endy);
 
 	m_TankPath = m_aStar.getPath();
 
@@ -88,9 +78,7 @@ void TankNet::SetBattlePlans()
 	m_Endx = std::rand() % 35 + 20;
 	m_Endy = std::rand() % 20 + 1;
 
-	m_nodeMap.CreateMap();
-	NodeVector = m_nodeMap.getNodeMap();
-	m_aStar.Run(NodeVector[m_Startx][m_Starty], NodeVector[m_Endx][m_Endy],m_nodeMap.getNodeMap());
+	m_aStar.Run(m_Startx,m_Starty,m_Endx,m_Endy);
 
 	m_PlayerPath = m_aStar.getPath();
 
@@ -124,16 +112,40 @@ void TankNet::move()
 {
 	m_movement.Update(BattlePlan);
 
+	if (!aStarRan)
+	{
+		m_aStar.Run(10,10,1,1); // Run the AStar algorithm with these two nodes
+		m_path = m_aStar.getPath();
+		aStarRan = true;
+	}
+
 	// Position of tank
-	float TankXPos = pos.getX();
-	float TankYPos = pos.getY();
+	//float PlayerTankPosX = pos.getX();
+	//float PlayerTankPosY = pos.getY();
 	
-	float EnemyTankPosX = enemy_tank_position.getX();
-	float EnemyTankPosY = enemy_tank_position.getY();
+	float AITankPosX = enemy_tank_position.getX();
+	float AITankPosY = enemy_tank_position.getY();
+
+	int Spacing = m_aStar.getSpacing();
+
+	int AITankXNode = 0;
+	int AITankYNode = 0;
+
+	AITankXNode = AITankPosX / Spacing;
+	AITankYNode = AITankPosY / Spacing;
+
+	int PlayerTankXNode = 0;
+	int PlayerTankYNode = 0;
+
+	//PlayerTankXNode = PlayerTankPosX / Spacing;
+	//PlayerTankYNode = PlayerTankPosY / Spacing;
 
 	//std::cout << TankXPos << " " << TankYPos << "\n";
-
 	
+	
+	//forwards = true;
+
+
 
 	/*
 	if(forward)
@@ -161,6 +173,7 @@ void TankNet::collided()
 void TankNet::markTarget(Position p)
 {
 	own_base_position = p;
+	m_aStar.setPlayerBasePosition(p.getX(),p.getY());
 	//std::cout << "Target spotted at (" <<p.getX() << ", " << p.getY() << ")\n"; 
 }
 
@@ -183,6 +196,7 @@ void TankNet::markEnemy(Position p)
 void TankNet::markBase(Position p)
 {
 	enemy_base_position = p;
+	m_aStar.setAIBasePosition(p.getX(), p.getY());
 
 	float deltaX = getX() - p.getX();
 	float deltaY = getY() - p.getY();

@@ -17,13 +17,28 @@ private:
 	int mapSizeY = ScreenSizeY/Spacing;
 
 	std::vector<Node> m_nodeColumn; // row for nodemap
-	std::vector<std::vector<Node>> m_nodeMap; // Used to store all the nodes
+	std::vector<std::vector<Node>> m_nodeVector; // Used to store all the nodes
 
 	Node fakeNode; // Dummy node for out of bounds adjacent nodes
+
+	// Position of the player base
+	float PlayerBaseX;
+	float PlayerBaseY;
+
+	// Position of the enemy base
+	float AIBaseX;
+	float AIBaseY;
+
+
 public:
 	NodeMap(); // Default constructor
+	void ClearMap(); // Wipe the map for the next algorithm
 	void CreateMap(); // Used to create the map of nodes
 	std::vector<std::vector<Node>>& getNodeMap(); // Return the map of nodes
+	void setPlayerBasePosition(float xPosIn, float yPosIn); // Set position of Players base - from TankNet
+	void setAIBasePosition(float xPosIn, float yPosIn);	// Set position of AI base - from TankNet
+	int getSpacing(); // Get the spacing between nodes
+
 
 };
 

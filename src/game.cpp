@@ -71,9 +71,8 @@ Game::Game() // Constructor
 	redScore = 0;
 	blueScore = 0;
 
-	// MAP DRAWING
-	std::vector<Node> m_list = npc.getPath();
-	gridNode.GetPath(m_list);
+	
+	
 }
 
 Game::~Game(){}  // Destructor
@@ -164,6 +163,10 @@ void Game::resetPlayer()
 
 void Game::play()// Play the game for one timestep
 {
+	// DRAW DEBUG LINE
+	m_path = npc.getPath();
+	gridNode.GetPath(m_path);
+
 	// Move tank
 	player.markPos();
 	player.move();
@@ -457,6 +460,7 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const// Draw 
 			m_debugGrid[i]->DrawLine(target, states);
 		}
 
+		
 		target.draw(gridNode);
 	}
 

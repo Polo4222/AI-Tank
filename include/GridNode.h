@@ -15,4 +15,5 @@ public:
 	GridNode();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 	void GetPath(std::vector<Node> pathList);
+
 };

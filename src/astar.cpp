@@ -22,21 +22,34 @@ AStar::AStar()
 
 
 
-
-void AStar::Run(Node &startNodeIn, Node& endNodeIn,std::vector<std::vector<Node>>& nodesIn)
+void AStar::Run(int startXIn, int startYIn, int endXIn, int endYIn)
 {
 
-	std::cout << startNodeIn.XPosition << " " << startNodeIn.YPosition << " | " << endNodeIn.XPosition << " " << endNodeIn.YPosition << "\n";
+	Path.clear();
+	Node *parentNode = new Node; // Parent Node
+	Node *currentNode = new Node;	// Current Node
+
+	std::list<Node*> closedList; 
+	std::list<Node*> openList; // Storage of all nodes in the open list
+
+	
+	m_nodeMap.CreateMap(); // Create the set of nodes
+	m_nodes =  m_nodeMap.getNodeMap(); // Get the nodeMap to set start and end points
+	//Node& startNodeIn, Node& endNodeIn, std::vector<std::vector<Node>> &nodesIn
+	startNode = &m_nodes[startXIn][startYIn];
+	endNode = &m_nodes[endXIn][endYIn];
+
+	std::cout << startNode->XPosition << " " << startNode->YPosition << " | " << endNode->XPosition << " " << endNode->YPosition << "\n";
 
 	//Put startNode in open list and assign it some required values
-	startNodeIn.inOpen = true;
-	startNodeIn.GCost = 0;
-	openList.push_front(&startNodeIn); 
+	startNode->inOpen = true;
+	startNode->GCost = 0;
+	openList.push_front(startNode); 
 
 	parentNode = openList.front(); // Set the parentNode to this startNode
 
 	// Run while the end node has not been reached
-	while (parentNode->Number != endNodeIn.Number)
+	while (parentNode->Number != endNode->Number)
 	{
 		
 		openList.sort(compareNodes); // Sort the open list using the compareNodes function
@@ -65,14 +78,14 @@ void AStar::Run(Node &startNodeIn, Node& endNodeIn,std::vector<std::vector<Node>
 			{
 				// Calculate GScore 
 				// G Score - Distance from starting node to current
-				xDistance = currentNode->XPosition - startNodeIn.XPosition;
-				yDistance = currentNode->YPosition - startNodeIn.YPosition;
+				xDistance = currentNode->XPosition - startNode->XPosition;
+				yDistance = currentNode->YPosition - startNode->YPosition;
 				GScore = parentNode->GCost + sqrt(xDistance * xDistance + yDistance * yDistance);
 				
 				// Calculate HScore
 				// H Score - Estimated distance from current to goal node
-				xDistance = endNodeIn.XPosition - currentNode->XPosition;
-				yDistance = endNodeIn.YPosition - currentNode->YPosition;
+				xDistance = endNode->XPosition - currentNode->XPosition;
+				yDistance = endNode->YPosition - currentNode->YPosition;
 				HScore = sqrt(xDistance * xDistance + yDistance * yDistance);
 
 				// F Score (F = G + H)
@@ -108,9 +121,10 @@ void AStar::Run(Node &startNodeIn, Node& endNodeIn,std::vector<std::vector<Node>
 	Node* nextNode = new Node;
 	Node * lastNode = parentNode;
 	Path.push_back(*parentNode);
-	while (nextNode->Number != startNodeIn.Number)
+	while (nextNode->Number != startNode->Number)
 	{
-		nextNode = &nodesIn[lastNode->ParentXPosition][lastNode->ParentYPosition];
+		m_nodes = m_nodeMap.getNodeMap();
+		nextNode = &m_nodes[lastNode->ParentXPosition][lastNode->ParentYPosition];
 		lastNode = nextNode;
 		Path.push_back(*nextNode);
 	}
@@ -124,7 +138,20 @@ void AStar::Run(Node &startNodeIn, Node& endNodeIn,std::vector<std::vector<Node>
 	
 	// MEMORY MANAGEMENT
 	
-	// Need to delete pointer lists here as well
+	// Need to delete pointer lists here as well - currently crashes program - to be fixed at a later date
+	/*
+	 for (std::list< Node* >::iterator it = openList.begin() ; it != openList.end(); ++it)
+	 {
+		delete (*it);
+	 } 
+	 openList.clear();
+
+	 for (std::list< Node* >::iterator it = closedList.begin() ; it != closedList.end(); ++it)
+	 {
+		delete (*it);
+	 } 
+	 closedList.clear();
+	 */
 
 	// Deleting pointers
 	parentNode = nullptr;
@@ -136,13 +163,31 @@ void AStar::Run(Node &startNodeIn, Node& endNodeIn,std::vector<std::vector<Node>
 	delete currentNode;
 	delete nextNode;
 	delete lastNode;
-	
-	
 
+	
+	m_nodeMap.ClearMap();
+	closedList.clear();
+	openList.clear();
+
+	//std::vector<Node> Path; // Final path that the A* should take
 	
 }
 
 std::vector<Node> AStar::getPath()
 {
 	return Path;
+}
+
+int AStar::getSpacing()
+{
+	return m_nodeMap.getSpacing();
+}
+
+void AStar::setPlayerBasePosition(float xPosIn, float yPosIn)
+{
+	m_nodeMap.setPlayerBasePosition(xPosIn,yPosIn);
+}
+void AStar::setAIBasePosition(float xPosIn, float yPosIn)	
+{
+	m_nodeMap.setAIBasePosition(xPosIn,yPosIn);
 }

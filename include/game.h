@@ -37,6 +37,7 @@ class Game : public sf::Drawable
 		int j = 10;
 
 		GridNode gridNode;
+		std::vector<Node> m_path;
 
     public:
 		Game(); // Constructor

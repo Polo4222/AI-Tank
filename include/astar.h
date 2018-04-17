@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <set>
 #include <vector>
-#include "node.h"
+#include "nodeMap.h"
 
 class AStar
 {
@@ -30,9 +30,18 @@ private:
 	float HScore;
 	float FScore;
 
+	NodeMap m_nodeMap; 
+	std::vector<std::vector<Node>> m_nodes;
+	
+	Node* startNode;
+	Node* endNode;
+
 public:
 	AStar(); // Default constructor
-	void Run(Node& startNodeIn, Node& endNodeIn, std::vector<std::vector<Node>> &nodesIn); // Run the A* algorithm - takes 2 nodes and the vector to look through for the final path
+	void Run(int startXIn, int startYIn, int endXIn, int endYIn); // Run the A* algorithm - takes 2 nodes and the vector to look through for the final path
 	std::vector<Node> getPath();
+	int getSpacing(); // Get the spacing between nodes;
+	void setPlayerBasePosition(float xPosIn, float yPosIn); // Set position of Players base - from TankNet
+	void setAIBasePosition(float xPosIn, float yPosIn);	// Set position of AI base - from TankNet
 	
 };
