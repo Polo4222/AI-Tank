@@ -12,23 +12,27 @@ void TankNet::PathValueCalculations(std::vector<Node> TankPaths, int ValueHolder
 
 void TankNet::AimingCalculations()
 {
-	if (enemySpotted == true || enemyBaseSpotted == true)
+
+	if ((enemySpotted == true && isVisible() || enemyBaseSpotted == true) && friendlyBase == false)
 	{
 		float deltaR = turretTh - turretAngle;
 		if (deltaR > 10)
 		{
 			GUN = 'R';
+		std::cout << "Gun = R" << std::endl;
 		}
 		else if (deltaR < -10)
 		{
 			GUN = 'L';
+			std::cout << "Gun = L" << std::endl;
 		}
 		else
 		{
 			GUN = 'A';
+			std::cout << "Gun = A" << std::endl;
 		}
 
-		if (deltaR > 1 && deltaR < 180) {
+		if (deltaR > 1 && deltaR < 180) {									//Anton - Example of the tank movement functions. It has it's own for moving itself
 			turretGoLeft();
 		}
 		else if (deltaR < -1 && deltaR > -180) {
@@ -41,12 +45,16 @@ void TankNet::AimingCalculations()
 			turretGoRight();
 		}
 		else {
+			if (isVisible() || enemyBaseSpotted == true)
+			{ 
 			lineOfSight = true;
 			stopTurret();
 			clearMovement();
+			}
 		}
 
 	}
+	
 }
 
 TankNet::TankNet() // Construtor
@@ -62,8 +70,7 @@ TankNet::~TankNet() // Destructor
 
 void TankNet::SetBattlePlans()
 {
-
-	std::srand(1990);
+	std::srand(1990);						//Anton - random gen code and creating the A star path and returning it
 	m_Endx = std::rand() % 15 + 1;
 	m_Endx = std::rand() % 20 + 1;
 
@@ -78,28 +85,32 @@ void TankNet::SetBattlePlans()
 	m_Endx = std::rand() % 35 + 20;
 	m_Endy = std::rand() % 20 + 1;
 
-	m_aStar.Run(m_Startx,m_Starty,m_Endx,m_Endy);
+	m_aStar.Run(m_Startx, m_Starty, m_Endx, m_Endy);
 
 	m_PlayerPath = m_aStar.getPath();
 
 	PathValueCalculations(m_TankPath, m_TankPathValue);
 	PathValueCalculations(m_PlayerPath, m_PlayerPathValue);
 
-	if (m_TankPathValue < m_TankPathValue + 2)
+	if (m_TankPathValue < m_TankPathValue + 2)						//Anton - Battle plans and the values that it can be
 	{
 		BattlePlan = 'A';
+		std::cout << "Battle Plan - Attack" << std::endl;
 	}
 	else if (m_TankPathValue <= m_PlayerPathValue)
 	{
 		BattlePlan = 'B';
+		std::cout << "Battle Plan - Semi Attack" << std::endl;
 	}
 	else if (m_TankPathValue >= m_PlayerPathValue)
 	{
 		BattlePlan = 'C';
+		std::cout << "Battle PLan - Semi Defence" << std::endl;
 	}
 	else if (m_TankPathValue + 2 > m_PlayerPathValue)
 	{
 		BattlePlan = 'D';
+		std::cout << "Battle Plan - Defence" << std::endl;
 	}
 }
 
@@ -108,8 +119,13 @@ void TankNet::reset()
 	forwards = true;
 }
 
-void TankNet::move()
+void TankNet::move()							//Anton - Here it needs to go
 {
+	if (BattlePlan == NULL)
+	{
+		SetBattlePlans();
+	}
+
 	m_movement.Update(BattlePlan);
 
 	if (!aStarRan)
@@ -137,30 +153,9 @@ void TankNet::move()
 	int PlayerTankXNode = 0;
 	int PlayerTankYNode = 0;
 
-	//PlayerTankXNode = PlayerTankPosX / Spacing;
-	//PlayerTankYNode = PlayerTankPosY / Spacing;
+	Aiming();
+	turret();
 
-	//std::cout << TankXPos << " " << TankYPos << "\n";
-	
-	
-	//forwards = true;
-
-
-
-	/*
-	if(forward)
-	{
-		goForward();
-		
-		turretGoRight();
-		//forward = false;
-	}
-	else
-	{
-		goBackward();
-		turretGoLeft();
-	}
-	*/
 }
 
 void TankNet::collided()
@@ -172,14 +167,28 @@ void TankNet::collided()
 // Players Bases
 void TankNet::markTarget(Position p)
 {
-	own_base_position = p;
-	m_aStar.setPlayerBasePosition(p.getX(),p.getY());
+	if (p.getX() < 350) {
+	enemyBaseSpotted = true;
+
+	float deltaX = getX() - p.getX();
+	float deltaY = getY() - p.getY();
+
+	angleInDegrees = atan2(deltaY, deltaX) * 180 / PI;
+	turretAngle = angleInDegrees + 180;
+	}
+	else {
+		enemyBaseSpotted = false;
+	}
+	
+	//own_base_position = p;
+	//m_aStar.setPlayerBasePosition(p.getX(),p.getY());
 	//std::cout << "Target spotted at (" <<p.getX() << ", " << p.getY() << ")\n"; 
 }
 
 
 void TankNet::markEnemy(Position p)
 {
+	if (isVisible()) {
 	enemy_tank_position = p;
 
 	float deltaX = getX() - p.getX();
@@ -188,13 +197,22 @@ void TankNet::markEnemy(Position p)
 	angleInDegrees = atan2(deltaY, deltaX) * 180 / PI;
 	turretAngle = angleInDegrees + 180; 
 
-	//std::cout << "Enemy spotted at (" <<p.getX() << ", " << p.getY() << ")\n";
+	std::cout << "Enemy spotted at (" <<p.getX() << ", " << p.getY() << ")\n";
+
+	enemySpotted = true;
+	}
+	else
+	{
+		enemySpotted = false;
+	}
+	
 
 }
 
 // Own base
 void TankNet::markBase(Position p)
 {
+
 	enemy_base_position = p;
 	m_aStar.setAIBasePosition(p.getX(), p.getY());
 
@@ -204,7 +222,9 @@ void TankNet::markBase(Position p)
 	angleInDegrees = atan2(deltaY, deltaX) * 180 / PI;
 	turretAngle = angleInDegrees + 180;
 
-	//std::cout << "Base spotted at (" <<p.getX() << ", " << p.getY() << ")\n"; 
+	std::cout << "Base spotted at (" <<p.getX() << ", " << p.getY() << ")\n"; 
+	
+	
 }
 
 void TankNet::markShell(Position p)
@@ -218,19 +238,19 @@ void TankNet::turret()
 	if ((enemySpotted == true && lineOfSight == true || enemyBaseSpotted == true && lineOfSight == true) && hasAmmo() == true)
 	{
 		GUN = 'F';
+		enemyBaseSpotted = false;
+		enemySpotted = false;
+		lineOfSight = false;
 	}
-	else
-	{
+	else {
 		GUN = 'I';
 	}
-
-
 }
 
 void TankNet::Aiming()
 {
-	
-	if ((BattlePlan == 'A' || BattlePlan == 'B') && numberOfShells > buildingsRemain)
+	std::cout << "Searching" << std::endl;
+	if ((BattlePlan == 'A' || BattlePlan == 'B'))
 	{
 		if (enemyBaseSpotted == true)
 		{
@@ -241,7 +261,7 @@ void TankNet::Aiming()
 			AimingCalculations();
 		}
 	}
-	else if (BattlePlan == 'C' && numberOfShells > buildingsRemain)
+	else if (BattlePlan == 'C' )
 	{
 		if (enemySpotted == true)
 		{

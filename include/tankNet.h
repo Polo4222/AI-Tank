@@ -3,6 +3,7 @@
 #include "movement.h" // Movement class
 #include "astar.h" // AStar class
 
+
 class TankNet : public AITank
 {
 private:
@@ -10,7 +11,6 @@ private:
 
 	std::vector<Node> m_TankPath;
 	std::vector<Node> m_PlayerPath;
-
 
 	Movement m_movement;
 	
@@ -24,6 +24,7 @@ private:
 	int m_TankPathValue;
 	int m_PlayerPathValue;
 
+	bool friendlyBase = false; 
 	bool enemySpotted = false;
 	bool enemyBaseSpotted = false;
 	bool lineOfSight = false;
@@ -40,13 +41,11 @@ private:
 	bool aStarRan = false;
 	std::vector<Node> m_path;
 
-
 	void PathValueCalculations(std::vector<Node> TankPaths, int ValueHolder);
+	
 	void AimingCalculations();
-
-
+	
 	//void PathValueCalculations(std::vector<Node> TankPaths, int ValueHolder);
-
 
 public:
     TankNet();
@@ -62,6 +61,7 @@ public:
 	void markShell(Position p);
 	void turret();
 	void Aiming();
+	
 	bool isFiring(); 
 	void score(int thisScore,int enemyScore);
 	std::vector<Node> getPath();

@@ -143,6 +143,7 @@ void Tank::implementMove()
 	updateBb(); // Update the bounding box
 	// Decrement fire counter
 	if(fireCounter > 0) fireCounter--;
+
 }
 
 void Tank::clearMovement()
