@@ -1,8 +1,8 @@
 ﻿  tankNet.cpp
 c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(7): warning C4018: '<': signed/unsigned mismatch
-c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(153): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(154): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(179): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(200): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(225): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(155): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(180): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(201): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(226): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   tankwar.vcxproj -> C:\Users\tonny\Documents\GitHub\AI-Tank\Debug\tankwar.exe
