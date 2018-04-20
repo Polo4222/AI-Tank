@@ -27,7 +27,6 @@
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\GridNode.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\movement.cpp" />
     <ClCompile Include="src\nodeMap.cpp" />
     <ClCompile Include="src\obstacle.cpp" />
     <ClCompile Include="src\playerTank.cpp" />
@@ -43,7 +42,6 @@
     <ClInclude Include="include\dumbTank.h" />
     <ClInclude Include="include\game.h" />
     <ClInclude Include="include\GridNode.h" />
-    <ClInclude Include="include\movement.h" />
     <ClInclude Include="include\node.h" />
     <ClInclude Include="include\nodeMap.h" />
     <ClInclude Include="include\obstacle.h" />

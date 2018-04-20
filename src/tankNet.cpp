@@ -49,10 +49,9 @@ void TankNet::AimingCalculations()
 			{ 
 			lineOfSight = true;
 			stopTurret();
-			clearMovement();
+			//clearMovement();
 			}
-		}
-
+		}	
 	}
 	
 }
@@ -72,7 +71,7 @@ void TankNet::SetBattlePlans()
 {
 	std::srand(1990);						//Anton - random gen code and creating the A star path and returning it
 	m_Endx = std::rand() % 15 + 1;
-	m_Endx = std::rand() % 20 + 1;
+	m_Endy = std::rand() % 20 + 1;
 
 	m_aStar.Run(25,15,m_Endx,m_Endy);
 
@@ -121,41 +120,24 @@ void TankNet::reset()
 
 void TankNet::move()							//Anton - Here it needs to go
 {
+	int Spacing = m_aStar.getSpacing();
+
+
+
 	if (BattlePlan == NULL)
 	{
 		SetBattlePlans();
 	}
 
-	m_movement.Update(BattlePlan);
 
-	if (!aStarRan)
-	{
-		m_aStar.Run(10,10,1,1); // Run the AStar algorithm with these two nodes
-		m_path = m_aStar.getPath();
-		aStarRan = true;
-	}
 
 	// Position of tank
 	//float PlayerTankPosX = pos.getX();
 	//float PlayerTankPosY = pos.getY();
 	
-	float AITankPosX = enemy_tank_position.getX();
-	float AITankPosY = enemy_tank_position.getY();
-
-	int Spacing = m_aStar.getSpacing();
-
-	int AITankXNode = 0;
-	int AITankYNode = 0;
-
-	AITankXNode = AITankPosX / Spacing;
-	AITankYNode = AITankPosY / Spacing;
-
-	int PlayerTankXNode = 0;
-	int PlayerTankYNode = 0;
-
 	Aiming();
 	turret();
-
+	Movement();
 }
 
 void TankNet::collided()
@@ -222,9 +204,7 @@ void TankNet::markBase(Position p)
 	angleInDegrees = atan2(deltaY, deltaX) * 180 / PI;
 	turretAngle = angleInDegrees + 180;
 
-	std::cout << "Base spotted at (" <<p.getX() << ", " << p.getY() << ")\n"; 
-	
-	
+	std::cout << " Friendly Base spotted at (" <<p.getX() << ", " << p.getY() << ")\n"; 
 }
 
 void TankNet::markShell(Position p)
@@ -244,13 +224,15 @@ void TankNet::turret()
 	}
 	else {
 		GUN = 'I';
+		
 	}
 }
 
 void TankNet::Aiming()
 {
-	std::cout << "Searching" << std::endl;
+		std::cout << "Searching" << std:: endl;
 	if ((BattlePlan == 'A' || BattlePlan == 'B'))
+
 	{
 		if (enemyBaseSpotted == true)
 		{
@@ -286,6 +268,72 @@ void TankNet::Aiming()
 	}
 
 }
+void TankNet::Movement()
+{
+
+	int Spacing = m_aStar.getSpacing();
+
+	// Gets the position of the npc tank in line with the nodes
+	int npcPositionX = pos.getX() / Spacing;
+	int npcPositionY = pos.getY() / Spacing;
+
+
+	float deltaX = getX() - firstNode.XPosition;
+	float deltaY = getY() - firstNode.YPosition;
+	angleInDegrees = atan2(deltaY, deltaX) * 180 / PI;
+	float requiredAngle = angleInDegrees + 180;
+	float rotational = pos.getTh();
+	float deltaR = rotational - requiredAngle;
+
+	if (!m_path.empty()) // Check if path is empty
+	{
+		firstNode = m_path.front();	// First element of the m_path vector is stored in firstNode
+		if (firstNode.XPosition == pos.getX() && firstNode.YPosition == pos.getY())
+		{
+			m_path.erase(m_path.begin());	//Removes the first element from the vector
+		}
+		
+		if (deltaR > 1 && deltaR < 180) {
+			goLeft();
+			std::cout << "Tank moving Left" << std::endl;
+		}
+		else if (deltaR < -1 && deltaR > -180) {
+			goRight();
+			std::cout << "Tank moving Right " << pos.getTh() << std::endl;
+		}
+		else if (deltaR < -180) {
+			goRight();
+			std::cout << "Right 360 " << pos.getTh() << std::endl;
+		}
+		else if (deltaR > 180) {
+			goLeft();
+			std::cout << "Left 360" << std::endl;
+		}
+		else
+		{
+			if (!npcPositionX == firstNode.XPosition && !npcPositionY == firstNode.YPosition && (!GUN == 'R' || 'L'))
+			{
+				//clearMovement();
+				goForward();
+			}
+		}
+		if (GUN == 'R')
+		{
+			goRight();	//Move chassis with the turret
+		}
+		if (GUN == 'L')
+		{
+			goLeft();
+		}
+
+	}
+	else
+	{
+		m_aStar.Run(npcPositionX, npcPositionY, m_Endx, m_Endy); // Run the AStar algorithm with these two nodes (AI Tank position & end node coords)
+		m_path = m_aStar.getPath();
+	}
+}
+
 
 bool TankNet::isFiring()
 {

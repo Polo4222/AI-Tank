@@ -2,8 +2,7 @@
 
 #include <iostream>
 
-
-class Movement
+class Movement 
 {
 private:
 

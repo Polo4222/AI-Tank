@@ -1,8 +1,13 @@
 ﻿  tankNet.cpp
-c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(7): warning C4018: '<': signed/unsigned mismatch
-c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(153): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(154): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(179): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(200): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\tonny\documents\github\ai-tank\src\tanknet.cpp(225): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  tankwar.vcxproj -> C:\Users\tonny\Documents\GitHub\AI-Tank\Debug\tankwar.exe
+c:\users\snipeglider\documents\github\ai-tank\src\tanknet.cpp(7): warning C4018: '<': signed/unsigned mismatch
+c:\users\snipeglider\documents\github\ai-tank\src\tanknet.cpp(158): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\snipeglider\documents\github\ai-tank\src\tanknet.cpp(179): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\snipeglider\documents\github\ai-tank\src\tanknet.cpp(204): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\snipeglider\documents\github\ai-tank\src\tanknet.cpp(277): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\snipeglider\documents\github\ai-tank\src\tanknet.cpp(278): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\snipeglider\documents\github\ai-tank\src\tanknet.cpp(281): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\snipeglider\documents\github\ai-tank\src\tanknet.cpp(282): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\snipeglider\documents\github\ai-tank\src\tanknet.cpp(283): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\snipeglider\documents\github\ai-tank\src\tanknet.cpp(284): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\snipeglider\documents\github\ai-tank\src\tanknet.cpp(316): warning C4806: '==': unsafe operation: no value of type 'bool' promoted to type 'char' can equal the given constant
+  tankwar.vcxproj -> C:\Users\SNIPEGLIDER\Documents\GitHub\AI-Tank\Debug\tankwar.exe

@@ -12,8 +12,6 @@ private:
 	std::vector<Node> m_TankPath;
 	std::vector<Node> m_PlayerPath;
 
-	Movement m_movement;
-	
 	AStar m_aStar;
 
 	char BattlePlan;
@@ -40,7 +38,7 @@ private:
 
 	bool aStarRan = false;
 	std::vector<Node> m_path;
-
+	Node firstNode;
 	void PathValueCalculations(std::vector<Node> TankPaths, int ValueHolder);
 	
 	void AimingCalculations();
@@ -61,6 +59,7 @@ public:
 	void markShell(Position p);
 	void turret();
 	void Aiming();
+	void Movement();
 	
 	bool isFiring(); 
 	void score(int thisScore,int enemyScore);

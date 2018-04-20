@@ -43,7 +43,5 @@ void Movement::Update(char StateIn)
 		Total defence - protect AI tank bases, stay in own half
 		- Always stay within small radius of own base 
 		*/
-		break;
-
 	}
 }
