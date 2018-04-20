@@ -47,15 +47,15 @@ void TankNet::AimingCalculations()																				//!< Goes throught the aim
 		else {
 			if (isVisible() || enemyBaseSpotted == true)														//!< Last check if it can fire
 			{ 
-<<<<<<< HEAD
+
 			lineOfSight = true;
 			stopTurret();
 			//clearMovement();
-=======
+
 			lineOfSight = true;																					//!< Says it has line of sight for firing the gun
 			stopTurret();																						//!< Stops the turret moving so it focuses to shoot
 			clearMovement();																					//!< Clears it's movement.
->>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
+
 			}
 		}	
 	}
@@ -79,15 +79,15 @@ TankNet::~TankNet() // Destructor
 
 void TankNet::SetBattlePlans()
 {
-<<<<<<< HEAD
+
 	std::srand(1990);						//Anton - random gen code and creating the A star path and returning it
 	m_Endx = std::rand() % 15 + 1;
 	m_Endy = std::rand() % 20 + 1;
-=======
+
 	std::srand(1990);																		//!< Creates a seed for the random generator so it is more random.
 	m_Endx = std::rand() % 15 + 1;															//!< Creates a random number between 1 and 15
 	m_Endx = std::rand() % 20 + 1;															
->>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
+
 
 	m_aStar.Run(25,15,m_Endx,m_Endy);														//!< Run the A Star function to create an A star path
 
@@ -136,15 +136,15 @@ void TankNet::reset()
 
 void TankNet::move()							
 {
-<<<<<<< HEAD
+
 	int Spacing = m_aStar.getSpacing();
 
 
 
 	if (BattlePlan == NULL)
-=======
+
 	if (BattlePlan == NULL)																//!< Sets the battle plan at the start
->>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
+
 	{
 		SetBattlePlans();
 	}
@@ -155,15 +155,9 @@ void TankNet::move()
 	//float PlayerTankPosX = pos.getX();
 	//float PlayerTankPosY = pos.getY();
 	
-<<<<<<< HEAD
-	Aiming();
-	turret();
-	Movement();
-=======
+
 	float AITankPosX = enemy_tank_position.getX();
 	float AITankPosY = enemy_tank_position.getY();
-
-	int Spacing = m_aStar.getSpacing();
 
 	int AITankXNode = 0;
 	int AITankYNode = 0;
@@ -176,8 +170,8 @@ void TankNet::move()
 
 	Aiming();																	//!< Runs the Aiming Machine
 	turret();																	//!< Runs the Turret Machine
+	Movement();
 
->>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
 }
 
 void TankNet::collided()
@@ -260,25 +254,18 @@ void TankNet::turret()																						//!< This is the function that contr
 		lineOfSight = false;
 	}
 	else {
-<<<<<<< HEAD
-		GUN = 'I';
-		
-=======
+
 		GUN = 'I';																							//!< Makes the gun Idle if it's not firing
->>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
+
 	}
 }
 
 void TankNet::Aiming()
 {
-<<<<<<< HEAD
-		std::cout << "Searching" << std:: endl;
-	if ((BattlePlan == 'A' || BattlePlan == 'B'))
 
-=======
 	std::cout << "Searching" << std::endl;
 	if ((BattlePlan == 'A' || BattlePlan == 'B'))															//!< These statements sets the gun's targeting priorety depending on the Battle plans
->>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
+
 	{
 		if (enemyBaseSpotted == true)
 		{
@@ -375,8 +362,38 @@ void TankNet::Movement()
 	}
 	else
 	{
-		m_aStar.Run(npcPositionX, npcPositionY, m_Endx, m_Endy); // Run the AStar algorithm with these two nodes (AI Tank position & end node coords)
-		m_path = m_aStar.getPath();
+		if (BattlePlan == 'A')
+		{
+			m_Endx = std::rand() % 12 + 1;
+			m_Endy = std::rand() % 25 + 1;
+
+			m_aStar.Run(npcPositionX, npcPositionY, m_Endx, m_Endy); // Run the AStar algorithm with these two nodes (AI Tank position & end node coords)
+			m_path = m_aStar.getPath();
+		}
+		if (BattlePlan == 'B')
+		{
+			m_Endx = std::rand() % 18 + 1;
+			m_Endy = std::rand() % 25 + 1;
+
+			m_aStar.Run(npcPositionX, npcPositionY, m_Endx, m_Endy); // Run the AStar algorithm with these two nodes (AI Tank position & end node coords)
+			m_path = m_aStar.getPath();
+		}
+		if (BattlePlan == 'C')
+		{
+			m_Endx = std::rand() % 22 + 1;
+			m_Endy = std::rand() % 25 + 1;
+
+			m_aStar.Run(npcPositionX, npcPositionY, m_Endx, m_Endy); // Run the AStar algorithm with these two nodes (AI Tank position & end node coords)
+			m_path = m_aStar.getPath();
+		}
+		if (BattlePlan == 'D')
+		{
+			m_Endx = std::rand() % 34 + 15;
+			m_Endy = std::rand() % 25 + 1;
+
+			m_aStar.Run(npcPositionX, npcPositionY, m_Endx, m_Endy); // Run the AStar algorithm with these two nodes (AI Tank position & end node coords)
+			m_path = m_aStar.getPath();
+		}
 	}
 }
 
