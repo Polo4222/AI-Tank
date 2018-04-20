@@ -2,37 +2,37 @@
 
 
 
-void TankNet::PathValueCalculations(std::vector<Node> TankPaths, int ValueHolder)
+void TankNet::PathValueCalculations(std::vector<Node> TankPaths, int ValueHolder)								//!< 	Calculate how long the route is				
 {
 	for (int i = 0; i < TankPaths.size(); i++)
 	{
-		ValueHolder = ValueHolder + 1;
+		ValueHolder++;
 	}
 }
 
-void TankNet::AimingCalculations()
+void TankNet::AimingCalculations()																				//!< Goes throught the aiming calculations
 {
 
-	if ((enemySpotted == true && isVisible() || enemyBaseSpotted == true) && friendlyBase == false)
+	if ((enemySpotted == true && isVisible() || enemyBaseSpotted == true) && friendlyBase == false)				//!< This is the condition that must be met for it to start aiming
 	{
-		float deltaR = turretTh - turretAngle;
-		if (deltaR > 10)
+		float deltaR = turretTh - turretAngle;																	//!< This is the aiming calculation for the turret to align with its target.
+		if (deltaR > 10)																						//!< Aiming calculation for it's direction. The calculation 
 		{
-			GUN = 'R';
-		std::cout << "Gun = R" << std::endl;
+			GUN = 'R';																							//!< Aiming hard right
+		std::cout << "Gun = R" << std::endl;	
 		}
 		else if (deltaR < -10)
 		{
-			GUN = 'L';
+			GUN = 'L';																							//!< Aiming it hard left
 			std::cout << "Gun = L" << std::endl;
 		}
 		else
 		{
-			GUN = 'A';
+			GUN = 'A';																							//!< Aiming the gun the last way
 			std::cout << "Gun = A" << std::endl;
 		}
 
-		if (deltaR > 1 && deltaR < 180) {									//Anton - Example of the tank movement functions. It has it's own for moving itself
+		if (deltaR > 1 && deltaR < 180) {																		//!< Aiming the gun turret
 			turretGoLeft();
 		}
 		else if (deltaR < -1 && deltaR > -180) {
@@ -45,13 +45,23 @@ void TankNet::AimingCalculations()
 			turretGoRight();
 		}
 		else {
-			if (isVisible() || enemyBaseSpotted == true)
+			if (isVisible() || enemyBaseSpotted == true)														//!< Last check if it can fire
 			{ 
+<<<<<<< HEAD
 			lineOfSight = true;
 			stopTurret();
 			//clearMovement();
+=======
+			lineOfSight = true;																					//!< Says it has line of sight for firing the gun
+			stopTurret();																						//!< Stops the turret moving so it focuses to shoot
+			clearMovement();																					//!< Clears it's movement.
+>>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
 			}
 		}	
+	}
+	else 
+	{
+		GUN = 'I';
 	}
 	
 }
@@ -69,16 +79,22 @@ TankNet::~TankNet() // Destructor
 
 void TankNet::SetBattlePlans()
 {
+<<<<<<< HEAD
 	std::srand(1990);						//Anton - random gen code and creating the A star path and returning it
 	m_Endx = std::rand() % 15 + 1;
 	m_Endy = std::rand() % 20 + 1;
+=======
+	std::srand(1990);																		//!< Creates a seed for the random generator so it is more random.
+	m_Endx = std::rand() % 15 + 1;															//!< Creates a random number between 1 and 15
+	m_Endx = std::rand() % 20 + 1;															
+>>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
 
-	m_aStar.Run(25,15,m_Endx,m_Endy);
+	m_aStar.Run(25,15,m_Endx,m_Endy);														//!< Run the A Star function to create an A star path
 
-	m_TankPath = m_aStar.getPath();
+	m_TankPath = m_aStar.getPath();															//!< Get the path that was created
 
 
-	m_Startx = std::rand() % 15 + 1;
+	m_Startx = std::rand() % 15 + 1;														//!< Same as the one's above just different positions
 	m_Starty = std::rand() % 20 + 1;
 
 	m_Endx = std::rand() % 35 + 20;
@@ -88,25 +104,25 @@ void TankNet::SetBattlePlans()
 
 	m_PlayerPath = m_aStar.getPath();
 
-	PathValueCalculations(m_TankPath, m_TankPathValue);
+	PathValueCalculations(m_TankPath, m_TankPathValue);										//!< Calculate the lengths of the paths
 	PathValueCalculations(m_PlayerPath, m_PlayerPathValue);
 
-	if (m_TankPathValue < m_TankPathValue + 2)						//Anton - Battle plans and the values that it can be
+	if (m_TankPathValue > m_PlayerPathValue + 2)											//!< Figure out the plan comparing the lengths of the paths
 	{
 		BattlePlan = 'A';
 		std::cout << "Battle Plan - Attack" << std::endl;
 	}
-	else if (m_TankPathValue <= m_PlayerPathValue)
+	else if (m_TankPathValue >= m_PlayerPathValue)
 	{
 		BattlePlan = 'B';
 		std::cout << "Battle Plan - Semi Attack" << std::endl;
 	}
-	else if (m_TankPathValue >= m_PlayerPathValue)
+	else if (m_TankPathValue <= m_PlayerPathValue)
 	{
 		BattlePlan = 'C';
 		std::cout << "Battle PLan - Semi Defence" << std::endl;
 	}
-	else if (m_TankPathValue + 2 > m_PlayerPathValue)
+	else if (m_TankPathValue + 2 < m_PlayerPathValue)
 	{
 		BattlePlan = 'D';
 		std::cout << "Battle Plan - Defence" << std::endl;
@@ -118,13 +134,17 @@ void TankNet::reset()
 	forwards = true;
 }
 
-void TankNet::move()							//Anton - Here it needs to go
+void TankNet::move()							
 {
+<<<<<<< HEAD
 	int Spacing = m_aStar.getSpacing();
 
 
 
 	if (BattlePlan == NULL)
+=======
+	if (BattlePlan == NULL)																//!< Sets the battle plan at the start
+>>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
 	{
 		SetBattlePlans();
 	}
@@ -135,9 +155,29 @@ void TankNet::move()							//Anton - Here it needs to go
 	//float PlayerTankPosX = pos.getX();
 	//float PlayerTankPosY = pos.getY();
 	
+<<<<<<< HEAD
 	Aiming();
 	turret();
 	Movement();
+=======
+	float AITankPosX = enemy_tank_position.getX();
+	float AITankPosY = enemy_tank_position.getY();
+
+	int Spacing = m_aStar.getSpacing();
+
+	int AITankXNode = 0;
+	int AITankYNode = 0;
+
+	AITankXNode = AITankPosX / Spacing;
+	AITankYNode = AITankPosY / Spacing;
+
+	int PlayerTankXNode = 0;
+	int PlayerTankYNode = 0;
+
+	Aiming();																	//!< Runs the Aiming Machine
+	turret();																	//!< Runs the Turret Machine
+
+>>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
 }
 
 void TankNet::collided()
@@ -149,28 +189,25 @@ void TankNet::collided()
 // Players Bases
 void TankNet::markTarget(Position p)
 {
-	if (p.getX() < 350) {
-	enemyBaseSpotted = true;
+	if (p.getX() < 350) {															//!< Checks if it's an enemy base
+	enemyBaseSpotted = true;														//!< Sets the AI to know it see's an enemy base. 
 
-	float deltaX = getX() - p.getX();
-	float deltaY = getY() - p.getY();
+	float deltaX = getX() - p.getX();												//!< Gets the delta of the x axis
+	float deltaY = getY() - p.getY();												//!< Gets the delta of the y axis
 
-	angleInDegrees = atan2(deltaY, deltaX) * 180 / PI;
-	turretAngle = angleInDegrees + 180;
+	angleInDegrees = atan2(deltaY, deltaX) * 180 / PI;								//!< Uses Pythagoras theorem to find the angle in degrees. 
+	turretAngle = angleInDegrees + 180;									
 	}
 	else {
-		enemyBaseSpotted = false;
+		enemyBaseSpotted = false;													//!< Set to not see a base otherwise
 	}
 	
-	//own_base_position = p;
-	//m_aStar.setPlayerBasePosition(p.getX(),p.getY());
-	//std::cout << "Target spotted at (" <<p.getX() << ", " << p.getY() << ")\n"; 
 }
 
 
 void TankNet::markEnemy(Position p)
 {
-	if (isVisible()) {
+	if (isVisible()) {																//!< This is the similar to the function above
 	enemy_tank_position = p;
 
 	float deltaX = getX() - p.getX();
@@ -192,7 +229,7 @@ void TankNet::markEnemy(Position p)
 }
 
 // Own base
-void TankNet::markBase(Position p)
+void TankNet::markBase(Position p)													//!< Similar Again but it's marking all bases and not setting them as friend or foe
 {
 
 	enemy_base_position = p;
@@ -212,27 +249,36 @@ void TankNet::markShell(Position p)
 	//std::cout << "Shell spotted at (" <<p.getX() << ", " << p.getY() << ")\n"; 
 }
 
-void TankNet::turret()
+void TankNet::turret()																						//!< This is the function that controls turret function 
 {
 
-	if ((enemySpotted == true && lineOfSight == true || enemyBaseSpotted == true && lineOfSight == true) && hasAmmo() == true)
+	if ((enemySpotted == true && lineOfSight == true || enemyBaseSpotted == true && lineOfSight == true) && hasAmmo() == true)			//!< This is the firing mechanism, it checks against some conditions it see if it is properly aimed at the target. 
 	{
-		GUN = 'F';
-		enemyBaseSpotted = false;
+		GUN = 'F';																							//!< This sets the gun to fire.
+		enemyBaseSpotted = false;																			//!< This sets the guns targets to all false after firing
 		enemySpotted = false;
 		lineOfSight = false;
 	}
 	else {
+<<<<<<< HEAD
 		GUN = 'I';
 		
+=======
+		GUN = 'I';																							//!< Makes the gun Idle if it's not firing
+>>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
 	}
 }
 
 void TankNet::Aiming()
 {
+<<<<<<< HEAD
 		std::cout << "Searching" << std:: endl;
 	if ((BattlePlan == 'A' || BattlePlan == 'B'))
 
+=======
+	std::cout << "Searching" << std::endl;
+	if ((BattlePlan == 'A' || BattlePlan == 'B'))															//!< These statements sets the gun's targeting priorety depending on the Battle plans
+>>>>>>> c1d34a68e3733bf04ee82e83986c01fdd29c854e
 	{
 		if (enemyBaseSpotted == true)
 		{
@@ -337,7 +383,7 @@ void TankNet::Movement()
 
 bool TankNet::isFiring()
 {
-	return GUN == 'F';
+	return GUN == 'F';																				//!< Fires the gun
 } 
 
 void TankNet::score(int thisScore,int enemyScore)
